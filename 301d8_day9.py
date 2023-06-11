@@ -8,35 +8,22 @@ b = 10
 # Equals: a == b
 if a == b:
     print("same")
-else:
-    print('not the same')  
-
 # Not Equals: a != b
-if a != b:
-    print("true")
 else:
-    print("false")
+    print("not the same")
 
 # Less than: a < b
 if a < b:
-    print("sure")
-else: 
-    print("nope")
-    
+    print("a is less than b")
 # Less than or equal to: a <= b
-if a <= b:
-    print("yes")
-else:
-    print("no")
-
+elif a <= b:
+    print("a is less than or equal to b")
 # Greater than: a > b
-if a > b:
-    print('da')
 else:
-    print("nyet")
+    print("a is greater than b")
 
 # Greater than or equal to: a >= b
 if a >= b:
-    print("jah")
+    print("yep")
 else:
-    print("nein") 
+    print("nope") 
